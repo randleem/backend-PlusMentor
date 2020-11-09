@@ -6,6 +6,12 @@ async function getAllTips() {
   return result.rows;
 }
 
+async function getRandomTip() {
+  const result = await query(`SELECT * FROM tips ORDER BY RANDOM() LIMIT 1;`);
+  console.log(result.rows);
+  return result.rows;
+}
+
 async function createTip(tip) {
   const result = await query(
     `INSERT INTO tips (tip)
@@ -18,4 +24,5 @@ async function createTip(tip) {
 module.exports = {
   getAllTips,
   createTip,
+  getRandomTip,
 };

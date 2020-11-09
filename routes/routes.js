@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllTips, createTip } = require("../models/tips");
+const { getAllTips, createTip, getRandomTip } = require("../models/tips");
 
 // router.get("/", function (req, res) {
 //   res.json({ message: "asrdthyfhtdgrsfeadss" });
@@ -10,6 +10,15 @@ const { getAllTips, createTip } = require("../models/tips");
 router.get("/", async function (req, res, next) {
   try {
     const tips = await getAllTips();
+    res.json({ success: true, data: tips });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/randomTip", async function (req, res, next) {
+  try {
+    const tips = await getRandomTip();
     res.json({ success: true, data: tips });
   } catch (err) {
     console.log(err);
