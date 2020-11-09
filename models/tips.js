@@ -13,6 +13,7 @@ async function getRandomTip() {
 }
 
 async function createTip(tip) {
+  console.log("this is line 16: " + tip);
   const result = await query(
     `INSERT INTO tips (tip)
   VALUES ($1);`,
