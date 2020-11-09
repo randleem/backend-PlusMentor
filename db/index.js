@@ -1,9 +1,12 @@
 const { Pool } = require("pg");
-require("dotenv").config();
+const { credentials } = require("../config");
+// require("dotenv").config();
 
-const pool = new Pool({
-  ssl: true,
-});
+// const pool = new Pool({
+//   // ssl: true,
+// });
+
+const pool = new Pool(credentials);
 
 module.exports = {
   query: (text, params, callback) => {
