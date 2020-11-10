@@ -1,4 +1,4 @@
-const { query } = require("../index");
+const { query } = require("../../index");
 
 async function dropUserTable() {
   await query(`DROP TABLE IF EXISTS user_table`);

@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -r dotenv/config ./bin/www"
+    "start": "nodemon -r dotenv/config ./bin/www",
+    "db:createUserTable": "node -r dotenv/config ./db/scripts/userTable/createUserTable",
+    "db:populateUserTable": "node -r dotenv/config ./db/scripts/userTable/populateUserTable",
+    "db:deleteUserTable": "node -r dotenv/config ./db/scripts/userTable/deleteUserTable",
+    "db:createInteractionTable": "node -r dotenv/config ./db/scripts/interactionTable/createInteractionTable",
+    "db:populateInteractionTable": "node -r dotenv/config ./db/scripts/interactionTable/populateInteractionTable",
+    "db:deleteInteractionTable": "node -r dotenv/config ./db/scripts/interactionTable/deleteInteractionTable"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

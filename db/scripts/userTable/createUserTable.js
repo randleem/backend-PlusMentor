@@ -1,4 +1,4 @@
-const { query } = require("../index");
+const { query } = require("../../index");
 
 async function createUserTable() {
   const res = await query(
@@ -7,7 +7,7 @@ async function createUserTable() {
             email TEXT,
             first_name TEXT,
             last_name TEXT,
-            pairId INT,
+            pair_id INT,
             role TEXT
             )`
   );
