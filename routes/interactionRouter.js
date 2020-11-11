@@ -6,13 +6,32 @@ const {
   getInteractionById,
   createInteraction,
   updateInteraction,
+  getInteractionsByDate,
+  getInteractionByTopic,
+  getInteractionByDiscussion,
+  getInteractionByTeamID,
 } = require("../models/interaction");
 
 // GET all
 router.get("/", async function (req, res, next) {
+  const { date, topic, discussion, team_id } = req.query;
   try {
-    const result = await getAllInteractions();
-    res.json({ success: true, data: result });
+    if (date) {
+      const result = await getInteractionsByDate(date);
+      res.json({ success: true, data: result });
+    } else if (topic) {
+      const result = await getInteractionByTopic(topic);
+      res.json({ success: true, data: result });
+    } else if (discussion) {
+      const result = await getInteractionByDiscussion(discussion);
+      res.json({ success: true, data: result });
+    } else if (team_id) {
+      const result = await getInteractionByTeamID(team_id);
+      res.json({ success: true, data: result });
+    } else {
+      const result = await getAllInteractions();
+      res.json({ success: true, data: result });
+    }
   } catch (err) {
     console.log(err);
   }

@@ -17,6 +17,38 @@ async function getInteractionById(id) {
   return result.rows;
 }
 
+// Get Interactions by Date
+async function getInteractionsByDate(date) {
+  const result = await query(
+    `SELECT * FROM interaction_table WHERE date = $1;`,
+    [date]
+  );
+}
+
+// Get Interactions by Topic
+async function getInteractionByTopic(topic) {
+  const result = await query(
+    `SELECT * FROM interaction_table WHERE topic = $1;`,
+    [topic]
+  );
+}
+
+// Get Interactions by Discussion
+async function getInteractionByDiscussion(discussion) {
+  const result = await query(
+    `SELECT * FROM interaction_table WHERE discussion = $1;`,
+    [discussion]
+  );
+}
+
+// Get Interactions by Team_id
+async function getInteractionByTeamID(team_id) {
+  const result = await query(
+    `SELECT * FROM interaction_table WHERE team_id = $1;`,
+    [team_id]
+  );
+}
+
 // POST
 async function createInteraction({ date, topic, discussion, pair_id }) {
   const result = await query(
@@ -43,6 +75,10 @@ module.exports = {
   getInteractionById,
   updateInteraction,
   createInteraction,
+  getInteractionsByDate,
+  getInteractionByTopic,
+  getInteractionByDiscussion,
+  getInteractionByTeamID,
 };
 
 // Hello Emma
