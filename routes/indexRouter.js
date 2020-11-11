@@ -28,9 +28,8 @@ router.get("/randomTip", async function (req, res, next) {
 router.post("/createTip", async function (req, res, next) {
   try {
     const { tip } = req.body;
-    console.log(`31: ` + tip);
-    const tips = await createTip(tip);
-    res.json({ success: true, valueInserted: tip });
+    const result = await createTip(tip);
+    res.json({ success: true, valueInserted: result });
   } catch (err) {
     console.log(err);
   }
