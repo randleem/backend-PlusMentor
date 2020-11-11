@@ -8,7 +8,8 @@ async function createUserTable() {
             first_name TEXT,
             last_name TEXT,
             pair_id INT,
-            role TEXT
+            role TEXT,
+            password TEXT
             )`
   );
 

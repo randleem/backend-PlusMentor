@@ -11,17 +11,9 @@ const {
 
 // GET all
 router.get("/", async function (req, res, next) {
-  console.log("14: " + req.session.name);
-  const { email } = req.query;
   try {
-    if (email) {
-      const result = await getUserByEmail(email);
-      res.json({ success: true, data: result });
-    } else {
-      const result = await getAllUsers();
-
-      res.json({ success: true, data: result });
-    }
+    const result = await getAllUsers();
+    res.json({ success: true, data: result });
   } catch (err) {
     console.log(err);
   }
@@ -38,17 +30,17 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
-// // GET by firstname
-// router.get("/", async function (req, res, next) {
-//   try {
-//     let firstname = req.query.firstname;
-//     console.log(firstname);
-//     const result = await getUserByEmail(firstname);
-//     res.json({ success: true, data: result });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+// GET by email
+router.get("/", async function (req, res, next) {
+  try {
+    let email = req.query.email;
+    console.log(firstname);
+    const result = await getUserByEmail(firstname);
+    res.json({ success: true, data: result });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 // POST
 router.post("/", async function (req, res, next) {

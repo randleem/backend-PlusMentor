@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const { query } = require("../db/index");
 
-router.post("/", async function (req, res, next) {
-  const { username, password } = req.body;
+router.get("/", async function (req, res, next) {
   try {
     let cookie_Stuff = req.signedCookies.user;
     //But the user is logging in for the first time so there won't be any appropriate signed cookie for usage.
+    // console.log(req.signedCookies.user);
     if (!cookie_Stuff) {
       //True for our case
       let auth_Stuff = req.headers.authorization;
@@ -19,12 +20,22 @@ router.post("/", async function (req, res, next) {
         //Extracting username:password from the encoding Authorization: Basic username:password
         step2 = step1.toString().split(":");
         //Extracting the username and password in an array
-        if (step2[0] == "admin" && step2[1] == "admin") {
+        let username = step2[0];
+        let password = step2[1];
+
+        // get user data to check for username and password
+        let dbstuff = await getAllUsers();
+        let mappedStuff = dbstuff.map(displayRow);
+
+        // check username matches password
+        if (containsUserAndPass(mappedStuff, username, password)) {
+          // if (step2[0] == "admin" && step2[1] == "admin") {
           //Correct username and password given
-          console.log("WELCOME ADMIN");
+          console.log("Welcome " + step2[0]);
           //Store a cookie with name=user and value=username
           res.cookie("user", "admin", { signed: true });
-          res.send("Signed in the first time");
+
+          res.send(step2[0] + " in the first time");
         } else {
           //Wrong authentication info, retry
           res.setHeader("WWW-Authenticate", "Basic");
@@ -45,5 +56,20 @@ router.post("/", async function (req, res, next) {
     console.log(err);
   }
 });
+
+async function getAllUsers() {
+  const result = await query(`SELECT * FROM user_table;`);
+  return result.rows;
+}
+
+function displayRow(array) {
+  return array;
+}
+
+function containsUserAndPass(object, username, password) {
+  if (object.filter((e) => e.email === username && e.password === password)) {
+    return true;
+  }
+}
 
 module.exports = router;

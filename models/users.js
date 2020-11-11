@@ -18,7 +18,6 @@ async function getUserById(id) {
 
 // GET by email
 async function getUserByEmail(email) {
-  console.log("21: " + email);
   const result = await query(`SELECT * FROM user_table WHERE email = $1;`, [
     email,
   ]);
