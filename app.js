@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const indexRouter = require("./routes/indexRouter");
 const interactionRouter = require("./routes/interactionRouter");
+const userRouter = require("./routes/userRouter");
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/interaction", interactionRouter);
+app.use("/user", userRouter);
 
 module.exports = app;

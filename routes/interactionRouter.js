@@ -5,6 +5,7 @@ const {
   getAllInteractions,
   getInteractionById,
   createInteraction,
+  updateInteraction,
 } = require("../models/interaction");
 
 // GET all
@@ -45,7 +46,7 @@ router.patch("/:id", async function (req, res, next) {
   try {
     const id = req.params.id;
     const interaction = req.body;
-    const result = await createInteraction(interaction, id);
+    const result = await updateInteraction(interaction, id);
     res.json({ success: true });
     console.log("patched row with topic: " + result[0].topic);
   } catch (err) {
