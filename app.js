@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const indexRouter = require("./routes/indexRouter");
 const interactionRouter = require("./routes/interactionRouter");
+const mentorTeamRouter = require("./routes/mentorTeamRouter");
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/interaction", interactionRouter);
+app.use("/mentor-team", mentorTeamRouter);
 
 module.exports = app;
