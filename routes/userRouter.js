@@ -11,6 +11,7 @@ const {
 
 // GET all
 router.get("/", async function (req, res, next) {
+  console.log("14: " + req.session.name);
   const { email } = req.query;
   try {
     if (email) {
