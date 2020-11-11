@@ -29,7 +29,7 @@ async function createInteraction({ date, topic, discussion, pair_id }) {
 
 // PATCH
 
-async function createInteraction({ date, topic, discussion, pair_id }, id) {
+async function updateInteraction({ date, topic, discussion, pair_id }, id) {
   const result = await query(
     `UPDATE interaction_table SET date=COALESCE($1, date), topic=COALESCE($2, topic), discussion=COALESCE($3, discussion), pair_id=COALESCE($4, pair_id) WHERE (interaction_id = $5) RETURNING topic;`,
     [date, topic, discussion, pair_id, id]
@@ -41,6 +41,7 @@ async function createInteraction({ date, topic, discussion, pair_id }, id) {
 module.exports = {
   getAllInteractions,
   getInteractionById,
+  updateInteraction,
   createInteraction,
 };
 

@@ -31,7 +31,7 @@ async function populateUserTable(array) {
       [email, first_name, last_name, pair_id, role]
     );
 
-    console.log(`Log:Populated table with ${email}`);
+    console.log(`Log: Populated table with ${email}`);
   }
 }
 
