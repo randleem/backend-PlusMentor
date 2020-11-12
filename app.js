@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
-// const cookieRouter = require("./routes/cookieRouter");
+const cookieRouter = require("./routes/cookieRouter");
 const indexRouter = require("./routes/indexRouter");
 const interactionRouter = require("./routes/interactionRouter");
 const mentorTeamRouter = require("./routes/mentorTeamRouter");
@@ -12,26 +12,27 @@ const { restart } = require("nodemon");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser("1234"));
 
-// // middleware to check cookie
-// function authenticateUser(req, res, next) {
-//   if (req.signedCookies.user)
-//     next();
-//   } else {
-//     res.json({ success: false });
-//   }
-// }
+// middleware to check cookie
+function authenticateUser(req, res, next) {
+  console.log("1");
+  if (req.cookies.user) {
+    console.log("2");
+    next();
+  } else {
+    res.json({ success: false });
+  }
+}
 
-// app.use("/", authenticateUser, cookieRouter);
-app.use("/", indexRouter);
-
-app.use("/interaction", interactionRouter);
-app.use("/mentor-team", mentorTeamRouter);
-app.use("/user", userRouter);
+app.use("/", cookieRouter);
+app.use("/randomTip", authenticateUser, indexRouter);
+app.use("/interaction", authenticateUser, interactionRouter);
+app.use("/mentor-team", authenticateUser, mentorTeamRouter);
+app.use("/user", authenticateUser, userRouter);
 
 module.exports = app;
