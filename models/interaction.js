@@ -49,6 +49,15 @@ async function getInteractionByTeamID(team_id) {
   );
 }
 
+// Get Interactions by email
+async function getInteractionByTeamID(email) {
+  const result = await query(
+    `SELECT interaction_table.date, interaction_table.topic, interaction_table.discussion FROM interaction_table INNER JOIN
+    user_table ON (interaction_table.team_id = user_id.team_id) WHERE user_table.email = $1;`,
+    [email]
+  );
+}
+
 // POST
 async function createInteraction({ date, topic, discussion, team_id }) {
   const result = await query(
