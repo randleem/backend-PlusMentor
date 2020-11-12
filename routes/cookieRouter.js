@@ -33,7 +33,9 @@ router.get("/", async function (req, res, next) {
           //Correct username and password given
           console.log("Welcome " + step2[0]);
           //Store a cookie with name=user and value=username
-          res.cookie("user", username, { signed: true });
+          // TODO:
+          // res.cookie("user", username, { signed: true });
+          res.cookie("user", username);
 
           res.send(step2[0] + " has signed in for the first time");
         } else {
