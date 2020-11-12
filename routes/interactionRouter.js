@@ -14,10 +14,13 @@ const {
 
 // GET all
 router.get("/", async function (req, res, next) {
-  const { date, topic, discussion, team_id } = req.query;
+  const { date, topic, discussion, team_id, email } = req.query;
   try {
     if (date) {
       const result = await getInteractionsByDate(date);
+      res.json({ success: true, data: result });
+    } else if (email) {
+      const result = await getInteractionByEmail(email);
       res.json({ success: true, data: result });
     } else if (topic) {
       const result = await getInteractionByTopic(topic);
