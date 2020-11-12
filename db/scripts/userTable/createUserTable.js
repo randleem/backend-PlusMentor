@@ -7,7 +7,7 @@ async function createUserTable() {
             email TEXT,
             first_name TEXT,
             last_name TEXT,
-            pair_id INT,
+            team_id INT,
             role TEXT,
             password TEXT
             )`

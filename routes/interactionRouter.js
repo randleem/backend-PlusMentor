@@ -53,6 +53,7 @@ router.post("/", async function (req, res, next) {
   try {
     const interaction = req.body;
     const result = await createInteraction(interaction);
+    console.log(result);
     res.json({ success: true });
     console.log("created row with topic: " + result[0].topic);
   } catch (err) {
