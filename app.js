@@ -4,6 +4,7 @@ const logger = require("morgan");
 const cors = require("cors");
 
 const cookieRouter = require("./routes/cookieRouter");
+const indexRouter = require("./routes/indexRouter");
 const interactionRouter = require("./routes/interactionRouter");
 const mentorTeamRouter = require("./routes/mentorTeamRouter");
 const userRouter = require("./routes/userRouter");
@@ -19,7 +20,9 @@ app.use(cookieParser("1234"));
 
 // middleware to check cookie
 function authenticateUser(req, res, next) {
-  if (req.signedCookies.user) {
+  console.log("1");
+  if (req.cookies.user) {
+    console.log("2");
     next();
   } else {
     res.json({ success: false });
@@ -27,6 +30,7 @@ function authenticateUser(req, res, next) {
 }
 
 app.use("/", cookieRouter);
+app.use("/randomTip", authenticateUser, indexRouter);
 app.use("/interaction", authenticateUser, interactionRouter);
 app.use("/mentor-team", authenticateUser, mentorTeamRouter);
 app.use("/user", authenticateUser, userRouter);
