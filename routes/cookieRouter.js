@@ -33,9 +33,11 @@ router.get("/", async function (req, res, next) {
           //Correct username and password given
           console.log("Welcome " + step2[0]);
           //Store a cookie with name=user and value=username
-          res.cookie("user", "admin", { signed: true });
+          // TODO:
+          // res.cookie("user", username, { signed: true });
+          res.cookie("user", username);
 
-          res.send(step2[0] + " in the first time");
+          res.send(step2[0] + " has signed in for the first time");
         } else {
           //Wrong authentication info, retry
           res.setHeader("WWW-Authenticate", "Basic");
@@ -44,7 +46,7 @@ router.get("/", async function (req, res, next) {
       }
     } else {
       //Signed cookie already stored
-      if (req.signedCookies.user == "admin") {
+      if (req.signedCookies.user) {
         res.send("HELLO GENUINE USER");
       } else {
         //Wrong info, user asked to authenticate again
@@ -66,10 +68,17 @@ function displayRow(array) {
   return array;
 }
 
-function containsUserAndPass(object, username, password) {
-  if (object.filter((e) => e.email === username && e.password === password)) {
+function containsUserAndPass(usersArray, username, password) {
+  // console.log({ usersArray, username, password });
+
+  const validMatches = usersArray.filter(
+    (e) => e.email === username && e.password === password
+  );
+
+  if (validMatches.length > 0) {
     return true;
   }
+  return false;
 }
 
 module.exports = router;
