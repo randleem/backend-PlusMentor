@@ -46,6 +46,7 @@ router.get("/", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   try {
     const user = req.body;
+    console.log(user);
     const result = await createUser(user);
     res.json({ success: true });
     console.log("created user with email: " + result[0].email);

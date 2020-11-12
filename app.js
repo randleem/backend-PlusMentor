@@ -3,7 +3,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
-const cookieRouter = require("./routes/cookieRouter");
+// const cookieRouter = require("./routes/cookieRouter");
+const indexRouter = require("./routes/indexRouter");
 const interactionRouter = require("./routes/interactionRouter");
 const mentorTeamRouter = require("./routes/mentorTeamRouter");
 const userRouter = require("./routes/userRouter");
@@ -17,18 +18,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser("1234"));
 
-// middleware to check cookie
-function authenticateUser(req, res, next) {
-  if (req.signedCookies.user) {
-    next();
-  } else {
-    res.json({ success: false });
-  }
-}
+// // middleware to check cookie
+// function authenticateUser(req, res, next) {
+//   if (req.signedCookies.user)
+//     next();
+//   } else {
+//     res.json({ success: false });
+//   }
+// }
 
-app.use("/", cookieRouter);
-app.use("/interaction", authenticateUser, interactionRouter);
-app.use("/mentor-team", authenticateUser, mentorTeamRouter);
-app.use("/user", authenticateUser, userRouter);
+// app.use("/", authenticateUser, cookieRouter);
+app.use("/", indexRouter);
+
+app.use("/interaction", interactionRouter);
+app.use("/mentor-team", mentorTeamRouter);
+app.use("/user", userRouter);
 
 module.exports = app;
