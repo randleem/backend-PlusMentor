@@ -7,7 +7,7 @@ async function createInteractionTable() {
             date DATE,
             topic TEXT,
             discussion TEXT,
-            pair_id INT
+            team_id INT
             )`
   );
 
