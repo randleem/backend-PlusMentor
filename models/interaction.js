@@ -50,21 +50,21 @@ async function getInteractionByTeamID(team_id) {
 }
 
 // POST
-async function createInteraction({ date, topic, discussion, pair_id }) {
+async function createInteraction({ date, topic, discussion, team_id }) {
   const result = await query(
-    `INSERT INTO interaction_table (date, topic, discussion, pair_id)
+    `INSERT INTO interaction_table (date, topic, discussion, team_id)
     VALUES ($1, $2, $3, $4) RETURNING topic;`,
-    [date, topic, discussion, pair_id]
+    [date, topic, discussion, team_id]
   );
   return result.rows;
 }
 
 // PATCH
 
-async function updateInteraction({ date, topic, discussion, pair_id }, id) {
+async function updateInteraction({ date, topic, discussion, team_id }, id) {
   const result = await query(
-    `UPDATE interaction_table SET date=COALESCE($1, date), topic=COALESCE($2, topic), discussion=COALESCE($3, discussion), pair_id=COALESCE($4, pair_id) WHERE (interaction_id = $5) RETURNING topic;`,
-    [date, topic, discussion, pair_id, id]
+    `UPDATE interaction_table SET date=COALESCE($1, date), topic=COALESCE($2, topic), discussion=COALESCE($3, discussion), team_id=COALESCE($4, team_id) WHERE (interaction_id = $5) RETURNING topic;`,
+    [date, topic, discussion, team_id, id]
   );
   console.log(result.rows);
   return result.rows;
