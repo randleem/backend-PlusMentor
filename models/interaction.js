@@ -23,6 +23,7 @@ async function getInteractionsByDate(date) {
     `SELECT * FROM interaction_table WHERE date = $1;`,
     [date]
   );
+  return result.rows;
 }
 
 // Get Interactions by Topic
@@ -31,6 +32,7 @@ async function getInteractionByTopic(topic) {
     `SELECT * FROM interaction_table WHERE topic = $1;`,
     [topic]
   );
+  return result.rows;
 }
 
 // Get Interactions by Discussion
@@ -39,6 +41,7 @@ async function getInteractionByDiscussion(discussion) {
     `SELECT * FROM interaction_table WHERE discussion = $1;`,
     [discussion]
   );
+  return result.rows;
 }
 
 // Get Interactions by Team_id
@@ -47,15 +50,17 @@ async function getInteractionByTeamID(team_id) {
     `SELECT * FROM interaction_table WHERE team_id = $1;`,
     [team_id]
   );
+  return result.rows;
 }
 
 // Get Interactions by email
-async function getInteractionByTeamID(email) {
+async function getInteractionByEmail(email) {
   const result = await query(
     `SELECT interaction_table.date, interaction_table.topic, interaction_table.discussion FROM interaction_table INNER JOIN
-    user_table ON (interaction_table.team_id = user_id.team_id) WHERE user_table.email = $1;`,
+    user_table ON (interaction_table.team_id = user_table.team_id) WHERE user_table.email LIKE $1;`,
     [email]
   );
+  return result.rows;
 }
 
 // POST
@@ -88,6 +93,5 @@ module.exports = {
   getInteractionByTopic,
   getInteractionByDiscussion,
   getInteractionByTeamID,
+  getInteractionByEmail,
 };
-
-// Hello Emma

@@ -10,6 +10,7 @@ const {
   getInteractionByTopic,
   getInteractionByDiscussion,
   getInteractionByTeamID,
+  getInteractionByEmail,
 } = require("../models/interaction");
 
 // GET all
