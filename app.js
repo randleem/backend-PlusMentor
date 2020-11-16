@@ -29,11 +29,18 @@ app.use(cookieParser());
 //   }
 // }
 
+// app.use("/", indexRouter);
+// app.use("/register", registerRouter);
+// app.use("/randomTip", authenticateUser, indexRouter);
+// app.use("/interaction", authenticateUser, interactionRouter);
+// app.use("/mentor-team", authenticateUser, mentorTeamRouter);
+// app.use("/user", authenticateUser, userRouter);
+
 app.use("/", indexRouter);
 app.use("/register", registerRouter);
-app.use("/randomTip", authenticateUser, indexRouter);
-app.use("/interaction", authenticateUser, interactionRouter);
-app.use("/mentor-team", authenticateUser, mentorTeamRouter);
-app.use("/user", authenticateUser, userRouter);
+app.use("/randomTip", indexRouter);
+app.use("/interaction", interactionRouter);
+app.use("/mentor-team", mentorTeamRouter);
+app.use("/user", userRouter);
 
 module.exports = app;
