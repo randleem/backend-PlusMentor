@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
-const cookieRouter = require("./routes/cookieRouter");
+// const cookieRouter = require("./routes/cookieRouter");
 const registerRouter = require("./routes/registerRouter");
 
 const indexRouter = require("./routes/indexRouter");
@@ -18,18 +18,18 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser("1234"));
+app.use(cookieParser());
 
 // middleware to check cookie
-function authenticateUser(req, res, next) {
-  if (req.cookies.user) {
-    next();
-  } else {
-    res.json({ success: false });
-  }
-}
+// function authenticateUser(req, res, next) {
+//   if (req.cookies.user) {
+//     next();
+//   } else {
+//     res.json({ success: false });
+//   }
+// }
 
-app.use("/", cookieRouter);
+app.use("/", indexRouter);
 app.use("/register", registerRouter);
 app.use("/randomTip", authenticateUser, indexRouter);
 app.use("/interaction", authenticateUser, interactionRouter);
