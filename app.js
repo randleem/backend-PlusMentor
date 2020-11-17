@@ -14,7 +14,12 @@ const { restart } = require("nodemon");
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin: "https://5fb3db6bd7ae7200073afa76--eager-ride-d2e2b2.netlify.app/",
+    credentials: true,
+  })
+);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
