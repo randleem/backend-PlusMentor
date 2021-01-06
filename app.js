@@ -14,11 +14,13 @@ const { restart } = require("nodemon");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ["https://5fb3db6bd7ae7200073afa76--eager-ride-d2e2b2.netlify.app","https://plusmentor.netlify.app/"],
+const corsOptions = {
+    origin: "https://plusmentor.netlify.app/",
     credentials: true,
-  })
+}
+
+app.use(
+  cors(corsOptions)
 );
 app.use(logger("dev"));
 app.use(express.json());
