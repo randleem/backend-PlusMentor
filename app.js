@@ -15,7 +15,7 @@ const { restart } = require("nodemon");
 const app = express();
 
 const corsOptions = {
-    origin: "https://plusmentor.netlify.app/",
+    origin: "https://plusmentor.netlify.app",
     credentials: true,
 }
 
