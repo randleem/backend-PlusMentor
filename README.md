@@ -13,7 +13,7 @@ After some discussion we decided to address the problem of mentees not knowing h
 
 Our Backend and Frontend are both deployed (Heroku & Netlify) - see our [Frontend here](https://plusmentor.netlify.app/)
 
-👾 **PlusMentor Back-End** 🕹️
+🤓 **PlusMentor Back-End** 🤩
 
 ![image of plusMentor Login](./pic1.png)
 ![image of PlusMentor Checklist](./pic2.png)
