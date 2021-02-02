@@ -43,27 +43,7 @@ https://github.com/randleem/backend-PlusMentor.git
 npm i
 ```
 
-4. Create a .env file to enter your Heroku Database credentials
-
-```
-touch .env
-```
-
-5. Add your Heroku Database credentials to the .env file
-
-```
-PGHOST= "your host details"
-
-PGDATABASE= "your database details"
-
-PGUSER= "your user details"
-
-PGPORT= "your post number"
-
-PGPASSWORD= "your password"
-```
-
-6. Start the application
+4. Start the application
 
 ```
 npm run start
