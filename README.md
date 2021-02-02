@@ -1,9 +1,9 @@
 # PlusMentor Back-End
 
-*9-13th November 2020*
-*Week 8 at the [School of Code](https://www.schoolofcode.co.uk)*
+_9-13th November 2020_
+_Week 8 at the [School of Code](https://www.schoolofcode.co.uk)_
 
-This was our week 8 week long hackathon at the [School of Code](https://www.schoolofcode.co.uk). 
+This was our week 8 week long hackathon at the [School of Code](https://www.schoolofcode.co.uk).
 
 We worked in groups of 4 and had a project brief to **build an app that will enhance the SoC mentoring experience**
 
@@ -16,7 +16,8 @@ Our Backend and Frontend are both deployed (Heroku & Netlify) - see our [Fronten
 👾 **PlusMentor Back-End** 🕹️
 
 ![image of plusMentor Login](./pic1.png)
-![image of PlusMentor Cards](./pic2.png)
+![image of PlusMentor Checklist](./pic2.png)
+![image of PlusMentor Cards](./pic3.png)
 
 ## Built with
 
@@ -25,7 +26,6 @@ Our Backend and Frontend are both deployed (Heroku & Netlify) - see our [Fronten
 - PostgreSQL
 - Node.js
 - Express
-
 
 ## Installation
 
@@ -68,4 +68,3 @@ PGPASSWORD= "your password"
 ```
 npm run start
 ```
-
